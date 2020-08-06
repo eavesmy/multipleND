@@ -5,3 +5,7 @@ type Ret struct {
 	Message string            `json:"message"`
 	Data    map[string]string `json:"data"`
 }
+
+type RetFast struct {
+	Data *m_r_fast `json:"data"`
+}

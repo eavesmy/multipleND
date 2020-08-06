@@ -2,6 +2,7 @@ package mnd
 
 import (
 	"io"
+	"path/filepath"
 )
 
 const _maxfilesize = 5368709120
@@ -28,6 +29,9 @@ func Upload(filePath string) string {
 	defer ctx.cancel()
 
 	ctx.setValue("u", filePath)
+
+	name := filepath.Base(filePath)
+	ctx.setValue("filename", name)
 
 	return upload(ctx)
 }

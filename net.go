@@ -40,12 +40,14 @@ func (ctx *Ctx) post(url string, body []byte) []byte {
 		req, err = http.NewRequest("POST", url, nil)
 	}
 
+	req.Header.Add("Content-Type", "application/json")
+
 	if err != nil {
 		panic(err)
 	}
 
 	if ctx.getValue("token") != nil {
-		req.Header.Add("X-TOKEN", ctx.getValue("token").(string))
+		req.Header.Add("x-token", ctx.getValue("token").(string))
 	}
 
 	res, err := ctx.client.Do(req)
@@ -80,7 +82,7 @@ func (ctx *Ctx) put(url string, body []byte) []byte {
 	}
 
 	if ctx.getValue("token") != nil {
-		req.Header.Add("X-TOKEN", ctx.getValue("token").(string))
+		req.Header.Add("x-token", ctx.getValue("token").(string))
 	}
 
 	res, err := ctx.client.Do(req)
